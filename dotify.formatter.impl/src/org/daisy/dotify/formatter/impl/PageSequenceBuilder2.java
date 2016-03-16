@@ -105,11 +105,15 @@ class PageSequenceBuilder2 {
 	}
 	
 	private int getTotalMarginRegionWidth() {
+		PageTemplate pageTemplate = seq.getLayoutMaster().getTemplate(
+				new DefaultContext.Builder()
+					.currentPage(1)
+					.build());
 		int mw = 0;
-		for (MarginRegion mr : seq.getLayoutMaster().getTemplate(1).getLeftMarginRegion()) {
+		for (MarginRegion mr : pageTemplate.getLeftMarginRegion()) {
 			mw += mr.getWidth();
 		}
-		for (MarginRegion mr : seq.getLayoutMaster().getTemplate(1).getRightMarginRegion()) {
+		for (MarginRegion mr : pageTemplate.getRightMarginRegion()) {
 			mw += mr.getWidth();
 		}
 		return mw;

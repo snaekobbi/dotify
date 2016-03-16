@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.daisy.dotify.api.formatter.Condition;
+import org.daisy.dotify.api.formatter.Context;
 import org.daisy.dotify.api.formatter.FieldList;
 import org.daisy.dotify.api.formatter.MarginRegion;
 import org.daisy.dotify.api.formatter.PageTemplateBuilder;
@@ -22,7 +23,7 @@ class PageTemplate implements PageTemplateBuilder {
 	private final List<FieldList> footer;
 	private final List<MarginRegion> leftMarginRegion;
 	private final List<MarginRegion> rightMarginRegion;
-	private final HashMap<Integer, Boolean> appliesTo;
+	private final HashMap<Context, Boolean> appliesTo;
 	
 	PageTemplate() {
 		this(null);
@@ -84,7 +85,7 @@ class PageTemplate implements PageTemplateBuilder {
 	 * @param pagenum the pagenum to test
 	 * @return returns true if the Template should be applied to the page
 	 */
-	boolean appliesTo(int pagenum) {
+	boolean appliesTo(Context pagenum) {
 		if (condition==null) {
 			return true;
 		}
@@ -92,7 +93,7 @@ class PageTemplate implements PageTemplateBuilder {
 		if (appliesTo.containsKey(pagenum)) {
 			return appliesTo.get(pagenum);
 		}
-		boolean applies = condition.evaluate(new DefaultContext.Builder().currentPage(pagenum).build());
+		boolean applies = condition.evaluate(pagenum);
 		appliesTo.put(pagenum, applies);
 		return applies;
 	}

@@ -141,10 +141,11 @@ public class FormatterImpl implements Formatter, CrossReferences {
 		int reformatSplitterMax = DEFAULT_SPLITTER_MAX;
 		ArrayList<Volume> ret = new ArrayList<>();
 		ArrayList<AnchorData> ad;
+		DefaultContext emptyContext = new DefaultContext.Builder().build();
 
 		while (!ok) {
 			try {
-				this.ps = contentPaginator.paginate(crh, this, new DefaultContext(null, null));
+				this.ps = contentPaginator.paginate(crh, this, emptyContext);
 			} catch (PaginatorException e) {
 				throw new RuntimeException("Error while reformatting.", e);
 			}
@@ -273,7 +274,10 @@ public class FormatterImpl implements Formatter, CrossReferences {
 
 
 	private PageStruct updateVolumeContents(int volumeNumber, ArrayList<AnchorData> ad, boolean pre) {
-		DefaultContext c = new DefaultContext(volumeNumber, sdc.getVolumeCount());
+		DefaultContext c = new DefaultContext.Builder()
+				.currentVolume(volumeNumber)
+				.volumeCount(sdc.getVolumeCount())
+				.build();
 		PageStruct ret = null;
 		try {
 			ArrayList<BlockSequence> ib = new ArrayList<>();
@@ -318,7 +322,10 @@ public class FormatterImpl implements Formatter, CrossReferences {
 			if (t==null) {
 				System.out.println("VOLDATA NULL");
 			}
-			if (t.appliesTo(new DefaultContext(volumeNumber, volumeCount))) {
+			if (t.appliesTo(new DefaultContext.Builder()
+					.currentVolume(volumeNumber)
+					.volumeCount(volumeCount)
+					.build())) {
 				return t.getVolumeMaxSize();
 			}
 		}

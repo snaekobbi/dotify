@@ -68,7 +68,10 @@ class PageImpl implements Page {
 		this.pageIndex = pageIndex;
 		contentMarkersBegin = 0;
 		this.parent = new WeakReference<>(parent);
-		this.template = master.getTemplate(pageIndex+1);
+		this.template = master.getTemplate(
+			new DefaultContext.Builder()
+				.currentPage(pageIndex+1)
+				.build());
 		this.flowHeight = master.getPageHeight() - 
 				(int)Math.ceil(getHeight(template.getHeader(), master.getRowSpacing())) -
 				(int)Math.ceil(getHeight(template.getFooter(), master.getRowSpacing())) -
@@ -196,8 +199,7 @@ class PageImpl implements Page {
 		ArrayList<RowImpl> ret = new ArrayList<>();
 		{
 			LayoutMaster lm = master;
-			int pagenum = getPageIndex() + 1;
-			PageTemplate t = lm.getTemplate(pagenum);
+			PageTemplate t = getPageTemplate();
 			BrailleTranslator filter = fcontext.getDefaultTranslator();
 			ret.addAll(renderFields(lm, t.getHeader(), filter));
 			if (lm.getPageArea()!=null && lm.getPageArea().getAlignment()==PageAreaProperties.Alignment.TOP && !pageArea.isEmpty()) {

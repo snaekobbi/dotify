@@ -3,6 +3,7 @@ package org.daisy.dotify.formatter.impl;
 import java.util.ArrayList;
 
 import org.daisy.dotify.api.formatter.Condition;
+import org.daisy.dotify.api.formatter.Context;
 import org.daisy.dotify.api.formatter.LayoutMasterBuilder;
 import org.daisy.dotify.api.formatter.LayoutMasterProperties;
 import org.daisy.dotify.api.formatter.PageAreaBuilder;
@@ -41,7 +42,7 @@ class LayoutMaster implements LayoutMasterBuilder {
 	 * @param pagenum the page number to get the template for
 	 * @return returns the template
 	 */
-	public PageTemplate getTemplate(int pagenum) {
+	public PageTemplate getTemplate(Context pagenum) {
 		for (PageTemplate t : templates) {
 			if (t.appliesTo(pagenum)) { return t; }
 		}

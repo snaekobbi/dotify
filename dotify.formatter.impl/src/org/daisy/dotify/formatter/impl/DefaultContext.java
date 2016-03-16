@@ -64,14 +64,6 @@ class DefaultContext implements Context {
 		this.metaVolume = builder.metaVolume;
 		this.metaPage = builder.metaPage;
 	}
-	
-	public DefaultContext(Integer currentVolume, Integer volumeCount) {
-		this.currentVolume = currentVolume;
-		this.volumeCount = volumeCount;
-		this.currentPage = null;
-		this.metaVolume = null;
-		this.metaPage = null;
-	} 
 
 	@Override
 	public Integer getCurrentVolume() {
