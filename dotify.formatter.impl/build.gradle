@@ -11,7 +11,9 @@ repositories {
 
 dependencies {
     provided group: "biz.aQute.bnd", name: "annotation", version: "2.3.0"
-    compile "org.daisy.dotify:dotify.api:2.5.0"
+	
+	// depends on page-in-volume branch
+    compile "org.daisy.dotify:dotify.api:2.6.0-SNAPSHOT"
     compile "org.daisy.dotify:dotify.common:2.0.2"
     compile (group: 'org.daisy.libs', name: 'saxon-he', version: '9.5.1.5') {
 		exclude module: 'Saxon-HE'

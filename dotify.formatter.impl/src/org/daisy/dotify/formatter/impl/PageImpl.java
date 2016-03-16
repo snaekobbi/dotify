@@ -52,6 +52,7 @@ class PageImpl implements Page {
 	private boolean isVolBreakAllowed;
 	private int keepPreviousSheets;
 	private int volumeNumber;
+	private int pageIndexInVolume;
 	
 	
 	public PageImpl(LayoutMaster master, FormatterContext fcontext, PageSequence parent, int pageIndex, List<RowImpl> before, List<RowImpl> after) {
@@ -81,6 +82,7 @@ class PageImpl implements Page {
 		this.keepPreviousSheets = 0;
 		this.volumeNumber = 0;
 		this.pageId = parent.getGlobalStartIndex()+getPageOrdinal();
+		this.pageIndexInVolume = -1;
 	}
 	
 	static float getHeight(List<FieldList> list, float def) {
@@ -714,4 +716,10 @@ class PageImpl implements Page {
 		this.volumeNumber = volumeNumber;
 	}
 
+	/**
+	 * @param index page index in volume (zero based)
+	 */
+	public void setPageIndexInVolume(int index) {
+		pageIndexInVolume = index;
+	}
 }

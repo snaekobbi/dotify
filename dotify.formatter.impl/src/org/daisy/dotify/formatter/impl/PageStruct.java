@@ -172,8 +172,11 @@ class PageStruct implements Iterable<PageSequence> {
 	
 	void setVolumeScope(int volumeNumber, int fromIndex, int toIndex) {
 		PageView pw = new PageView(pages, fromIndex, toIndex);
+		int i = 0;
 		for (PageImpl p : pw.getPages()) {
 			p.setVolumeNumber(volumeNumber);
+			p.setPageIndexInVolume(i);
+			i++;
 		}
 		volumeViews.put(volumeNumber, pw);
 	}

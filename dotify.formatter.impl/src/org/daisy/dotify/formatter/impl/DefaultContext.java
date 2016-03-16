@@ -3,12 +3,13 @@ package org.daisy.dotify.formatter.impl;
 import org.daisy.dotify.api.formatter.Context;
 
 class DefaultContext implements Context {
-	private final Integer currentVolume, volumeCount, currentPage, metaVolume, metaPage;
+	private final Integer currentVolume, volumeCount, currentPage, currentPageIndexInVolume, metaVolume, metaPage;
 	
 	static class Builder {
 		private Integer	currentVolume=null, 
 						volumeCount=null,
 						currentPage=null,
+						currentPageIndexInVolume=null,
 						metaVolume=null,
 						metaPage=null; 
 		
@@ -19,6 +20,7 @@ class DefaultContext implements Context {
 			this.currentVolume = base.getCurrentVolume();
 			this.volumeCount = base.getVolumeCount();
 			this.currentPage = base.getCurrentPage();
+			this.currentPageIndexInVolume = base.getCurrentPageIndexInVolume();
 			this.metaVolume = base.getMetaVolume();
 			this.metaPage = base.getMetaPage();
 		}
@@ -30,6 +32,11 @@ class DefaultContext implements Context {
 		
 		Builder currentPage(Integer value) {
 			this.currentPage = value;
+			return this;
+		}
+		
+		Builder currentPageIndexInVolume(Integer value) {
+			this.currentPageIndexInVolume = value;
 			return this;
 		}
 		
@@ -61,6 +68,7 @@ class DefaultContext implements Context {
 		this.currentVolume = builder.currentVolume;
 		this.volumeCount = builder.volumeCount;
 		this.currentPage = builder.currentPage;
+		this.currentPageIndexInVolume = builder.currentPageIndexInVolume;
 		this.metaVolume = builder.metaVolume;
 		this.metaPage = builder.metaPage;
 	}
@@ -78,6 +86,11 @@ class DefaultContext implements Context {
 	@Override
 	public Integer getCurrentPage() {
 		return currentPage;
+	}
+
+	@Override
+	public Integer getCurrentPageIndexInVolume() {
+		return currentPageIndexInVolume;
 	}
 
 	@Override

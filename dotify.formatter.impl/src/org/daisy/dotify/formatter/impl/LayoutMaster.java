@@ -38,13 +38,13 @@ class LayoutMaster implements LayoutMasterBuilder {
 	}
 
 	/**
-	 * Gets the template for the specified page number
-	 * @param pagenum the page number to get the template for
+	 * Gets the template for the specified page number and page index in volume
+	 * @param pageContext the page to get the template for
 	 * @return returns the template
 	 */
-	public PageTemplate getTemplate(Context pagenum) {
+	public PageTemplate getTemplate(Context pageContext) {
 		for (PageTemplate t : templates) {
-			if (t.appliesTo(pagenum)) { return t; }
+			if (t.appliesTo(pageContext)) { return t; }
 		}
 		return defaultPageTemplate;
 	}

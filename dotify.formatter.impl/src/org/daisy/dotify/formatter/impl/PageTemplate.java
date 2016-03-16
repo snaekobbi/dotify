@@ -81,20 +81,20 @@ class PageTemplate implements PageTemplateBuilder {
 	}
 
 	/**
-	 * Tests if this Template applies to this pagenum.
-	 * @param pagenum the pagenum to test
+	 * Test if this Template applies to this combination of page number and page index in volume.
+	 * @param pageContext the page to test
 	 * @return returns true if the Template should be applied to the page
 	 */
-	boolean appliesTo(Context pagenum) {
+	boolean appliesTo(Context pageContext) {
 		if (condition==null) {
 			return true;
 		}
 		// keep a HashMap with calculated results
-		if (appliesTo.containsKey(pagenum)) {
-			return appliesTo.get(pagenum);
+		if (appliesTo.containsKey(pageContext)) {
+			return appliesTo.get(pageContext);
 		}
-		boolean applies = condition.evaluate(pagenum);
-		appliesTo.put(pagenum, applies);
+		boolean applies = condition.evaluate(pageContext);
+		appliesTo.put(pageContext, applies);
 		return applies;
 	}
 

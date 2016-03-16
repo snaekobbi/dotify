@@ -108,6 +108,7 @@ class PageSequenceBuilder2 {
 		PageTemplate pageTemplate = seq.getLayoutMaster().getTemplate(
 				new DefaultContext.Builder()
 					.currentPage(1)
+					.currentPageIndexInVolume(1)
 					.build());
 		int mw = 0;
 		for (MarginRegion mr : pageTemplate.getLeftMarginRegion()) {

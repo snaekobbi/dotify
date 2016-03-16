@@ -312,6 +312,24 @@ public class TakenFromDP2Test extends AbstractFormatterEngineTest {
 		testPEF("resource-files/dp2/volume-template-various-sheets-in-volume-max-input.obfl",
 		        "resource-files/dp2/volume-template-various-sheets-in-volume-max-expected.pef", false);
 	}
+	// @Ignore // failing
+	@Test
+	public void testPageTemplateRightInitialPageNumber() throws LayoutEngineException, IOException, PagedMediaWriterConfigurationException {
+		testPEF("resource-files/dp2/page-template-right-initial-page-number-input.obfl",
+		        "resource-files/dp2/page-template-right-initial-page-number-expected.pef", true);
+	}
+	// @Ignore // failing
+	@Test
+	public void testPageTemplateFirstOfVolume() throws LayoutEngineException, IOException, PagedMediaWriterConfigurationException {
+		testPEF("resource-files/dp2/page-template-first-of-volume-input.obfl",
+		        "resource-files/dp2/page-template-first-of-volume-expected.pef", true);
+	}
+	// @Ignore // failing
+	@Test
+	public void testPageTemplateFirstOfVolumeInitialPageNumber() throws LayoutEngineException, IOException, PagedMediaWriterConfigurationException {
+		testPEF("resource-files/dp2/page-template-first-of-volume-initial-page-number-input.obfl",
+		        "resource-files/dp2/page-template-first-of-volume-initial-page-number-expected.pef", true);
+	}
 	@Test
 	public void testSheetCalculationInitialPageNumber() throws LayoutEngineException, IOException, PagedMediaWriterConfigurationException {
 		testPEF("resource-files/dp2/sheet-calculation-initial-page-number-input.obfl",
